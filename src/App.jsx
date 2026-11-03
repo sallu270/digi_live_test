@@ -35,8 +35,6 @@ function App() {
   return (
     <>
       <Routes>
-        {/* Redirect Root to Login initially */}
-        <Route path="/" element={<Navigate to="/login" replace />} />
 
         {/* Public Route */}
         <Route path="/login" element={<Login />} />

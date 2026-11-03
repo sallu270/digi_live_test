@@ -554,7 +554,6 @@ function JobSubcategory() {
               placeholder="✨ Select Parent Category"
               value={formData.parentCategoryId || undefined}
               onChange={(val) => handleSelectChange("parentCategoryId", val)}
-              getPopupContainer={(triggerNode) => triggerNode.parentNode}
               getPopupContainer={() => document.body}
               listHeight={250}
               showSearch
@@ -662,7 +661,6 @@ function JobSubcategory() {
               placeholder="✨ Select Parent Category"
               value={formData.parentCategoryId || undefined}
               onChange={(val) => handleSelectChange("parentCategoryId", val)}
-              getPopupContainer={(triggerNode) => triggerNode.parentNode}
               listHeight={250}
               showSearch
               getPopupContainer={() => document.body}

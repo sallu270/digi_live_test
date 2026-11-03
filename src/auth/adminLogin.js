@@ -24,17 +24,6 @@ export const sendAdminOtp = async (mobile) => {
   }
 };
 
-export const getAllUsersAPI = async (page = 1, limit = 10, type = "all") => {
-  const response = await apiClient.get("/admin/users", {
-    params: {
-      type,
-      page,
-      limit,
-    },
-  });
-
-  return response.data;
-};
 export const verifyAdminOtp = async (mobile, otp) => {
 
   try {
@@ -245,6 +234,8 @@ export const getAllCategories = async (page = 1, limit = 10) => {
     throw new Error(errorMessage);
   }
 };
+
+export const getAllCategory = getAllCategories;
 
 export const getAllBusiness = async (page = 1) => {
   const token = localStorage.getItem("token");

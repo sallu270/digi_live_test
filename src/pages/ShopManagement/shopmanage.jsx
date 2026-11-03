@@ -713,27 +713,45 @@ const ShopListManagement = () => {
                         <StatusBadge status={shop.status} />
                       </td>
                       <td className="p-6">
-                        <div className="flex justify-end items-center gap-1">
+                        <div className="flex justify-end items-center gap-1.5 flex-wrap">
+                          {shop.status !== "Approved" && shop.status !== "active" && (
+                            <button
+                              onClick={() => handleAction("approve", shop)}
+                              className="px-2.5 py-1 text-xs font-semibold text-emerald-600 bg-emerald-50 hover:bg-emerald-100 rounded-lg transition-all"
+                              title="Approve Business"
+                            >
+                              Approve
+                            </button>
+                          )}
+                          {shop.status !== "Rejected" && (
+                            <button
+                              onClick={() => handleAction("reject", shop)}
+                              className="px-2.5 py-1 text-xs font-semibold text-rose-600 bg-rose-50 hover:bg-rose-100 rounded-lg transition-all"
+                              title="Reject Business"
+                            >
+                              Reject
+                            </button>
+                          )}
                           <button
                             onClick={() => handleAction("view", shop)}
-                            className="p-2.5 text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all"
+                            className="px-2.5 py-1 text-xs font-semibold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 rounded-lg transition-all"
                             title="View Details"
                           >
-                            <Eye size={18} />
+                            View
                           </button>
                           <button
                             onClick={() => handleAction("edit", shop)}
-                            className="p-2.5 text-amber-500 hover:bg-amber-50 rounded-xl transition-all"
+                            className="px-2.5 py-1 text-xs font-semibold text-amber-600 bg-amber-50 hover:bg-amber-100 rounded-lg transition-all"
                             title="Edit Business"
                           >
-                            <Pencil size={18} />
+                            Edit
                           </button>
                           <button
                             onClick={() => handleAction("delete", shop)}
-                            className="p-2.5 text-rose-500 hover:bg-rose-50 rounded-xl transition-all"
+                            className="px-2.5 py-1 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg transition-all"
                             title="Delete"
                           >
-                            <Trash2 size={18} />
+                            Delete
                           </button>
                         </div>
                       </td>
@@ -1843,40 +1861,14 @@ const ShopListManagement = () => {
                 ) : null)}
             </div>
 
-            <div className="px-8 py-6 border-t bg-slate-50 flex justify-between items-center gap-4 sticky bottom-0 z-20">
+            <div className="px-8 py-6 border-t bg-slate-50 flex justify-end items-center gap-4 sticky bottom-0 z-20">
               {modalType === "view" ? (
-                <>
-                  <div className="flex gap-2">
-                    {shopDetail?.status !== "Approved" && (
-                      <button
-                        onClick={() => {
-                          setSelectedShop(shopDetail);
-                          setModalType("approve");
-                        }}
-                        className="px-6 py-2.5 bg-emerald-600 text-white rounded-xl text-[11px] font-bold uppercase tracking-wider hover:bg-emerald-700 shadow-md transition-all"
-                      >
-                        Approve
-                      </button>
-                    )}
-                    {shopDetail?.status !== "Rejected" && (
-                      <button
-                        onClick={() => {
-                          setSelectedShop(shopDetail);
-                          setModalType("reject");
-                        }}
-                        className="px-6 py-2.5 bg-rose-50 text-rose-600 border border-rose-200 rounded-xl text-[11px] font-bold uppercase tracking-wider hover:bg-rose-600 hover:text-white transition-all"
-                      >
-                        Deny / Reject
-                      </button>
-                    )}
-                  </div>
-                  <button
-                    onClick={closeModal}
-                    className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-[11px] font-bold uppercase"
-                  >
-                    Close
-                  </button>
-                </>
+                <button
+                  onClick={closeModal}
+                  className="px-6 py-2.5 bg-slate-900 text-white rounded-xl text-[11px] font-bold uppercase tracking-wider hover:bg-slate-800 transition-all"
+                >
+                  Close
+                </button>
               ) : modalType === "edit" ? null : modalType === "add" ? (
                 <>
                   <button
